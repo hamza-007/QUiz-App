@@ -1,16 +1,16 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ProtectedRoute } from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { Layout } from "./components";
 import {
   Home,
-  Login_section,
   Questions,
   Result,
   QuestionReview,
+  Login,
   SignUpPage,
 } from "./pages";
-
 const App = () => {
   return (
     <BrowserRouter>
@@ -20,35 +20,11 @@ const App = () => {
             path='/'
             element={
               <ProtectedRoute>
-                <Home />
+                <Layout />
               </ProtectedRoute>
             }
           />
-          <Route
-            path='/quiz'
-            element={
-              <ProtectedRoute>
-                <Questions />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path='/result'
-            element={
-              <ProtectedRoute>
-                <Result />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path='/review'
-            element={
-              <ProtectedRoute>
-                <QuestionReview />
-              </ProtectedRoute>
-            }
-          />
-          <Route path='/login' element={<Login_section />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/sign-up' element={<SignUpPage />} />
         </Routes>
       </div>

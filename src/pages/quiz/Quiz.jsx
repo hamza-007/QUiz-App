@@ -1,10 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { add_answer, set_score } from "../redux/actions/QuizActions";
-import Spinner from "./Spinner";
+import { add_answer, set_score } from "../../redux/actions/QuizActions";
+import Spinner from "../../components/Spinner";
 import { useNavigate } from "react-router-dom";
-import Question from "./Question";
+import Question from "../../components/Question";
 
 const Quiz = () => {
   const [current, setcurrent] = useState(0);

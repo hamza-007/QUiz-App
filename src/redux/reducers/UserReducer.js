@@ -12,12 +12,10 @@ const UserReducer = (state = User, action) => {
     case LOGOUT_USER:
       return { ...state, isLoggedIn: false, email: null, password: null };
     case LOGIN_USER:
-      console.log(action.payload);
       return {
         ...state,
         isLoggedIn: true,
-        email: action.payload.email,
-        password : action.payload.password
+        email: action.payload,
       };
   }
 

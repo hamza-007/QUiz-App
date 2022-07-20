@@ -1,7 +1,9 @@
 import Home from "./home/Home";
-import Questions from "./quiz/Questions";
+import Quiz from "./quiz/Quiz";
 import Result from "./result/Result";
-import QuestionReview from "./questionsReview/QuestionReview";
-import Login_section from "./login-page/Login-section";
-import SignUpPage from "./signupPage/SignUpPage";
-export { SignUpPage, Login_section, Home, Result, QuestionReview, Questions };
+import Review from "./questions-review/Review";
+import Login from "./login/Login"
+import SignUpPage from "./sign-up/SignUp";
+
+
+export { SignUpPage, Login, Home, Result, Review, Quiz };

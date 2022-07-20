@@ -27,10 +27,7 @@ export default function Navbar() {
                 Logout
               </a>
             ) : (
-              <>
-                <a href='/login'>Login</a>
-                <a href='/sign-up'>SignUp</a>
-              </>
+              ""
             )}
           </div>
         </Toolbar>

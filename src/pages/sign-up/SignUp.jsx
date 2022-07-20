@@ -1,8 +1,8 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
-import Btn from "./Btn";
+import Btn from "../../components/Btn";
 import { Box } from "@mui/material";
-const Register = () => {
+const SignUp = () => {
   return (
     <div className='login'>
       <div className='login_form'>
@@ -37,4 +37,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default SignUp;

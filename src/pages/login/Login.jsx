@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { login } from "../../redux/actions/UserActions";
+
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,6 +25,14 @@ const Login = () => {
   return (
     <div className='login'>
       <div className='login_form'>
+        <h1
+          style={{
+            fontSize: "25px",
+            marginBottom: "45px",
+          }}
+        >
+          Sign In
+        </h1>
         <Box>
           <TextField
             label='Email'

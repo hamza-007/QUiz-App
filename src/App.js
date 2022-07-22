@@ -15,44 +15,20 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className='App'>
-        <Layout>
+        
           <Routes>
             <Route
               path='/'
               element={
                 <ProtectedRoute>
-                  <Home />
+                  <Layout />
                 </ProtectedRoute>
               }
             />
-            <Route
-              path='/quiz'
-              element={
-                <ProtectedRoute>
-                  <Quiz />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path='/result'
-              element={
-                <ProtectedRoute>
-                  <Result />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path='/review'
-              element={
-                <ProtectedRoute>
-                  <Review />
-                </ProtectedRoute>
-              }
-            />
+            
             <Route path='/login' element={<Login />} />
             <Route path='/sign-up' element={<SignUpPage />} />
           </Routes>
-        </Layout>
       </div>
     </BrowserRouter>
   );

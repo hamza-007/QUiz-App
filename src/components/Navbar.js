@@ -1,37 +1,35 @@
 import React from "react";
-import { AppBar, Toolbar, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { useAuth } from "../hooks/useAuth";
+import SearchIcon from "@mui/icons-material/Search";
 import { logout } from "../redux/actions/UserActions";
+
 export default function Navbar() {
   let user = useAuth();
   const dispatch = useDispatch();
   return (
     <div className='navbar'>
-      <AppBar position='sticky' color='secondary' className='appbar'>
-        <Toolbar className='tool'>
-          <div>
-            <a href='/'>
-              <Typography className='typ' variant='h5'>
-                Trivia Quiz
-              </Typography>
-            </a>
-          </div>
-          <div className='login_stat'>
-            {user ? (
-              <a
-                style={{ color: "white" }}
-                href='/'
-                onClick={() => dispatch(logout())}
-              >
-                Logout
-              </a>
-            ) : (
-              ""
-            )}
-          </div>
-        </Toolbar>
-      </AppBar>
+      <a href='/'>
+        <h1>Quiz Time</h1>
+      </a>
+      <div className='search__section'>
+        <SearchIcon />
+        <input
+          type='search'
+          placeholder='Search...'
+          className='navbar__search'
+        />
+      </div>
+
+      <button className="navbar__button">start quiz</button>
+      <div>
+        {user ? (
+          
+          <h1>{user}</h1>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 }

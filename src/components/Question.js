@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Answers from "./Answers";
 
 const Question = (props) => {
   const [data, setdata] = useState("");
@@ -10,10 +11,7 @@ const Question = (props) => {
       <h1>Choose Answer</h1>
       <div className='answers-container'>
         {props.question.incorrectAnswers.map((answer, key) => (
-          <div key={key} className='question-answers'>
-            <input type={"radio"} checked name='answer' onChange={handleClick} value={answer} />
-            <h2> {answer} </h2>
-          </div>
+         <Answers key={key} id={key} data={answer} handler={handleClick} />
         ))}
 
         <div className='next-btn-container'>

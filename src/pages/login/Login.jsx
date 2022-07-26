@@ -22,12 +22,12 @@ const Login = () => {
   return (
     <div className='login'>
       <div className='login__image'>
-        <h4>
+        {/* <h4>
           " Lorem ipsum dolor sit amet consectetur adipisicing elit.
           Necessitatibus voluptates fugiat officiis nihil non natus dicta eius.
           Nobis magni provident voluptates. Incidunt nam quaerat esse nostrum
           culpa beatae commodi neque! Lorem ipsum dolor sit amet consectetur "
-        </h4>
+        </h4> */}
         <img src='/assets/index.jpeg' alt='' />
       </div>
 

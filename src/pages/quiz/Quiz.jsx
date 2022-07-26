@@ -9,6 +9,7 @@ import {
 import Spinner from "../../components/Spinner";
 import { useNavigate } from "react-router-dom";
 import Question from "../../components/Question";
+import Countdown from "react-countdown";
 
 const Quiz = () => {
   const [current, setcurrent] = useState(0);
@@ -44,8 +45,17 @@ const Quiz = () => {
         questions[current] && (
           <div className='question-section'>
             <div className='question-section-header'>
-              <h1>{questions[0].category} Quiz</h1>
-              <h6>Answer The Questions Below</h6>
+              <div>
+                <h1>{questions[0].category} Quiz</h1>
+                <h6>Answer The Questions Below</h6>
+              </div>
+              <div className='timer'>
+                {/* <h1>Timer 29:56 Mins</h1> */}
+                <h1>
+                  <Countdown date={Date.now() + 60000 * 30} />
+                   Mins
+                </h1>
+              </div>
             </div>
             <div className='question-section-image'>
               <img

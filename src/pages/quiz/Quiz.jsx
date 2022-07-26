@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { add_answer, set_score } from "../../redux/actions/QuizActions";
+import {
+  add_answer,
+  fetch_data,
+  set_score,
+} from "../../redux/actions/QuizActions";
 import Spinner from "../../components/Spinner";
 import { useNavigate } from "react-router-dom";
 import Question from "../../components/Question";
@@ -11,14 +15,16 @@ const Quiz = () => {
   const { questions, error, isloading } = useSelector((s) => s.quiz);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const handleClick = (answer) => {
+  useEffect(() => {
+    dispatch(fetch_data());
+  }, []);
+  const handleNext = (answer) => {
+    dispatch(add_answer(answer));
     let nextQuestion = current + 1;
+    if (answer === questions[current].correctAnswer) {
+      dispatch(set_score(10));
+    }
     if (nextQuestion <= questions.length) {
-      dispatch(add_answer(answer));
-      if (answer === questions[current].correctAnswer) {
-        dispatch(set_score(10));
-      }
       setcurrent((prev) => ++prev);
       if (nextQuestion === questions.length) {
         navigate("/result");
@@ -36,11 +42,27 @@ const Quiz = () => {
         <h1>{error}</h1>
       ) : (
         questions[current] && (
-          <div>
-            <h4>
-              Question {current + 1}/{questions.length}
-            </h4>
-            <Question question={questions[current]} handler={handleClick} />
+          <div className='question-section'>
+            <div className='question-section-header'>
+              <h1>{questions[0].category} Quiz</h1>
+              <h6>Answer The Questions Below</h6>
+            </div>
+            <div className='question-section-image'>
+              <img
+                src={`/assets/${questions[0].category}.jpeg`}
+                width={"250px"}
+                height={"150px"}
+              />
+              <div className='question-details'>
+                <h1>
+                  Question {current + 1}/{questions.length}
+                </h1>
+                <h1>{questions[current].question}</h1>
+              </div>
+            </div>
+            <div>
+              <Question question={questions[current]} handler={handleNext} />
+            </div>
           </div>
         )
       )}

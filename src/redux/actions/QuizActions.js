@@ -14,16 +14,11 @@ import axios from "axios";
 
 export const fetch_data = () => {
   return (dispatch, getState) => {
-    let url =
-      getState().quiz.categories.length === 0
-        ? `https://the-trivia-api.com/api/questions?limit=${
-            getState().quiz.questionsnumber
-          }&difficulty=${getState().quiz.difficulty}`
-        : `https://the-trivia-api.com/api/questions?${
-            getState().quiz.querystring
-          }&limit=${getState().quiz.questionsnumber}&difficulty=${
-            getState().quiz.difficulty
-          }`;
+    let url = `https://the-trivia-api.com/api/questions?${
+      getState().quiz.querystring
+    }&limit=${getState().quiz.questionsnumber}&difficulty=${
+      getState().quiz.difficulty
+    }`;
     dispatch(fetch_start());
     axios
       .get(url)
@@ -44,19 +39,9 @@ export const add_answer = (payload) => {
     payload,
   };
 };
-export const add_category = (payload) => {
-  return {
-    type: ADD_CATEGORY,
-    payload,
-  };
-};
 
-export const delete_category = (payload) => {
-  return {
-    type: DEL_CATEGORY,
-    payload,
-  };
-};
+
+
 
 export const set_questions_number = (payload) => {
   return {
@@ -72,9 +57,10 @@ export const set_difficulty = (payload) => {
   };
 };
 
-export const set_query = () => {
+export const set_query = (payload) => {
   return {
     type: SET_QUERY,
+    payload
   };
 };
 export const fetch_start = () => {

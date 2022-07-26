@@ -10,6 +10,10 @@ import { useNavigate } from "react-router-dom";
 const SideBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const handleLogout = () => {
+    navigate("/login");
+    dispatch(logout());
+  };
   return (
     <div className='sidebar'>
       <ul>
@@ -24,13 +28,7 @@ const SideBar = () => {
         </li>
       </ul>
       <div className='logout__icon'>
-        <button
-          className='logout__button'
-          onClick={() => {
-            dispatch(logout());
-            navigate("/");
-          }}
-        >
+        <button className='logout__button' onClick={handleLogout}>
           <LogoutIcon />
           <h2>Log out</h2>
         </button>

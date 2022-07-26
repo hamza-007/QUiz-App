@@ -12,10 +12,9 @@ import {
 } from "../constantes/Actions-Type";
 
 const Quiz = {
-  querystring: "categories=",
-  categories: [],
+  querystring: "",
   difficulty: "easy",
-  questionsnumber: 1,
+  questionsnumber: 20,
   questions: [],
   score: 0,
   isloading: false,
@@ -23,26 +22,8 @@ const Quiz = {
   answers: [],
 };
 
-const query_generator = (tab) => {
-  let str = "";
-  tab.map((item, key) => {
-    key === 0 ? (str = str + item) : (str = str + "," + item);
-  });
-  return str;
-};
-
 const QuizReducer = (state = Quiz, action) => {
   switch (action.type) {
-case ADD_CATEGORY:
-      return {
-        ...state,
-        categories: [...state.categories, action.payload],
-      };
-    case DEL_CATEGORY:
-      return {
-        ...state,
-        categories: state.categories.filter((item) => item != action.payload),
-      };
     case SET_NBR:
       return {
         ...state,
@@ -56,7 +37,7 @@ case ADD_CATEGORY:
     case SET_QUERY:
       return {
         ...state,
-        querystring: state.querystring + query_generator(state.categories),
+        querystring: state.querystring + "categories=" + action.payload,
       };
 
     case FETCH_SUCCES:

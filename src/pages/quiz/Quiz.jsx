@@ -5,17 +5,19 @@ import {
   add_answer,
   fetch_data,
   set_score,
+  toggle_modal,
 } from "../../redux/actions/QuizActions";
 import Spinner from "../../components/Spinner";
-import { useNavigate } from "react-router-dom";
 import Question from "../../components/Question";
 import Countdown from "react-countdown";
+import Alert from "../../components/Alert";
 
 const Quiz = () => {
+  console.log("quiz page rendered");
   const [current, setcurrent] = useState(0);
+  const [data, setdata] = useState("");
   const { questions, error, isloading } = useSelector((s) => s.quiz);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   useEffect(() => {
     dispatch(fetch_data());
   }, []);
@@ -28,13 +30,16 @@ const Quiz = () => {
     if (nextQuestion <= questions.length) {
       setcurrent((prev) => ++prev);
       if (nextQuestion === questions.length) {
-        navigate("/result");
+        dispatch(toggle_modal())
+        
       }
     }
+    setdata("");
   };
 
   return (
     <div className='questions'>
+      <Alert />
       {isloading ? (
         <div>
           <Spinner color='secondary' />
@@ -50,10 +55,9 @@ const Quiz = () => {
                 <h6>Answer The Questions Below</h6>
               </div>
               <div className='timer'>
-                {/* <h1>Timer 29:56 Mins</h1> */}
                 <h1>
                   <Countdown date={Date.now() + 60000 * 30} />
-                   Mins
+                  Mins
                 </h1>
               </div>
             </div>
@@ -71,7 +75,12 @@ const Quiz = () => {
               </div>
             </div>
             <div>
-              <Question question={questions[current]} handler={handleNext} />
+              <Question
+                data={data}
+                setdata={setdata}
+                question={questions[current]}
+                handler={handleNext}
+              />
             </div>
           </div>
         )

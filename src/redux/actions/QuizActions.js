@@ -9,6 +9,7 @@ import {
   FETCH_SUCCES,
   SET_SCORE,
   ADD_ANSWERS,
+  TOGGLE_MODAL,
 } from "../constantes/Actions-Type";
 import axios from "axios";
 
@@ -40,9 +41,6 @@ export const add_answer = (payload) => {
   };
 };
 
-
-
-
 export const set_questions_number = (payload) => {
   return {
     type: SET_NBR,
@@ -60,7 +58,7 @@ export const set_difficulty = (payload) => {
 export const set_query = (payload) => {
   return {
     type: SET_QUERY,
-    payload
+    payload,
   };
 };
 export const fetch_start = () => {
@@ -89,3 +87,9 @@ export const set_score = (payload) => {
     payload,
   };
 };
+
+export const toggle_modal = () => {
+  return {
+    type : TOGGLE_MODAL
+  }
+}

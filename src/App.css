@@ -4,7 +4,7 @@
   font-size: x-large;
   color: #696F79;
   overflow-x: hidden;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
 }
 a{
   text-decoration: none;

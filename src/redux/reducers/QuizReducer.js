@@ -9,6 +9,7 @@ import {
   FETCH_SUCCES,
   SET_SCORE,
   ADD_ANSWERS,
+  TOGGLE_MODAL,
 } from "../constantes/Actions-Type";
 
 const Quiz = {
@@ -20,6 +21,7 @@ const Quiz = {
   isloading: false,
   error: null,
   answers: [],
+  modal : false
 };
 
 const QuizReducer = (state = Quiz, action) => {
@@ -68,6 +70,12 @@ const QuizReducer = (state = Quiz, action) => {
         ...state,
         answers: [...state.answers, action.payload],
       };
+    }
+    case TOGGLE_MODAL : {
+      return {
+        ...state,
+        modal : ! state.modal
+      }
     }
   }
   return state;

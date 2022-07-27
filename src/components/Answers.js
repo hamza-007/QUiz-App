@@ -1,20 +1,23 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 
-const Answers = ({ data, handler,id }) => {
-console.log(id);
+const Answers = ({ answers, handler,data }) => {
+  
   return (
-    <div key={id} className='answers-container'>
-      <div className='question-answers'>
-        <input
-          type={"radio"}
-          name={'answer'}
-          onChange={handler}
-          value={data}
-        />
-        <h2> {data} </h2>
-      </div>
+    <div  className='answers-container'>
+      {answers.map((answer, key) => (
+        <div key={key} className='question-answers'>
+          <input
+            type={"radio"}
+            name={"answer"}
+            checked={data === answer}
+            onChange={handler}
+            value={answer}
+          />
+          <h2> {answer} </h2>
+        </div>
+      ))}
     </div>
   );
 };
 
-export default React.memo(Answers);
+export default Answers;

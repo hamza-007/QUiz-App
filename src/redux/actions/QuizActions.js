@@ -1,6 +1,4 @@
 import {
-  ADD_CATEGORY,
-  DEL_CATEGORY,
   SET_NBR,
   SET_DIFFICULTY,
   SET_QUERY,
@@ -90,6 +88,6 @@ export const set_score = (payload) => {
 
 export const toggle_modal = () => {
   return {
-    type : TOGGLE_MODAL
-  }
-}
+    type: TOGGLE_MODAL,
+  };
+};

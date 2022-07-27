@@ -13,7 +13,6 @@ import Countdown from "react-countdown";
 import Alert from "../../components/Alert";
 
 const Quiz = () => {
-  console.log("quiz page rendered");
   const [current, setcurrent] = useState(0);
   const [data, setdata] = useState("");
   const { questions, error, isloading } = useSelector((s) => s.quiz);
@@ -21,6 +20,7 @@ const Quiz = () => {
   useEffect(() => {
     dispatch(fetch_data());
   }, []);
+
   const handleNext = (answer) => {
     dispatch(add_answer(answer));
     let nextQuestion = current + 1;
@@ -30,8 +30,7 @@ const Quiz = () => {
     if (nextQuestion <= questions.length) {
       setcurrent((prev) => ++prev);
       if (nextQuestion === questions.length) {
-        dispatch(toggle_modal())
-        
+        dispatch(toggle_modal());
       }
     }
     setdata("");

@@ -1,9 +1,8 @@
 import React from "react";
 
-const Answers = ({ answers, handler,data }) => {
-  
+const Answers = ({ answers, handler, data }) => {
   return (
-    <div  className='answers-container'>
+    <div className='answers-container'>
       {answers.map((answer, key) => (
         <div key={key} className='question-answers'>
           <input

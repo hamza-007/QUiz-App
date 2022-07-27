@@ -1,4 +1,5 @@
 import Layout from "./layout/Layout";
 import Answers from "./Answers";
+import Answers from "./Answers";
 
-export { Layout,Answers };
+export { Answers,Layout, Answers };

@@ -9,9 +9,16 @@ const Question = (props) => {
     <div className='question-component'>
       <h1>Choose Answer</h1>
       <div className='answers-container'>
-        <Answers data={props.data} answers={props.question.incorrectAnswers} handler={handleClick} />
+        <Answers
+          data={props.data}
+          answers={props.question.incorrectAnswers}
+          handler={handleClick}
+        />
         <div className='next-btn-container'>
-          <button onClick={() => props.handler(props.data)} className='next-btn'>
+          <button
+            onClick={() => props.handler(props.data)}
+            className='next-btn'
+          >
             Next
           </button>
         </div>

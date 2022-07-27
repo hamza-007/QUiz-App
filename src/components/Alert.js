@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toggle_modal } from "../redux/actions/QuizActions";
 import "./Alert.css";
 
 export default function Alert() {
-  let { modal } = useSelector((s) => s.quiz);
+  let { score, questions, modal } = useSelector((s) => s.quiz);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,8 +31,10 @@ export default function Alert() {
         <div className='modal'>
           <div onClick={toggleModal} className='overlay'></div>
           <div className='modal-content'>
-            <h2>Congratulations ! </h2>
-            <p>You have Passed Quiz with 80%</p>
+            <h1>Congratulations You Have Passed </h1>
+            <p>
+              You Scored {Math.trunc(((100 / questions.length) * score) / 10)}%
+            </p>
             <button className='review-btn' onClick={handleReview}>
               Review Quiz
             </button>

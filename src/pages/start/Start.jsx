@@ -1,7 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { fetch_data } from "../../redux/actions/QuizActions";
 import "./start.css";
 
 const Start = () => {

@@ -3,32 +3,24 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { Layout } from "./components";
-import {
-  Home,
-  Result,
-  Login,
-  SignUpPage,
-  Quiz,
-  Review,
-} from "./pages";
+import { Login, SignUpPage } from "./pages";
 const App = () => {
   return (
     <BrowserRouter>
       <div className='App'>
-        
-          <Routes>
-            <Route
-              path='*'
-              element={
-                <ProtectedRoute>
-                  <Layout />
-                </ProtectedRoute>
-              }
-            />
-            
-            <Route path='/login' element={<Login />} />
-            <Route path='/sign-up' element={<SignUpPage />} />
-          </Routes>
+        <Routes>
+          <Route
+            path='*'
+            element={
+              <ProtectedRoute>
+                <Layout />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route path='/login' element={<Login />} />
+          <Route path='/sign-up' element={<SignUpPage />} />
+        </Routes>
       </div>
     </BrowserRouter>
   );

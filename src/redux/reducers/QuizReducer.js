@@ -1,6 +1,4 @@
 import {
-  ADD_CATEGORY,
-  DEL_CATEGORY,
   SET_NBR,
   SET_DIFFICULTY,
   SET_QUERY,
@@ -15,13 +13,13 @@ import {
 const Quiz = {
   querystring: "",
   difficulty: "easy",
-  questionsnumber: 20,
+  questionsnumber: 5,
   questions: [],
   score: 0,
   isloading: false,
   error: null,
   answers: [],
-  modal : false
+  modal: false,
 };
 
 const QuizReducer = (state = Quiz, action) => {
@@ -71,11 +69,11 @@ const QuizReducer = (state = Quiz, action) => {
         answers: [...state.answers, action.payload],
       };
     }
-    case TOGGLE_MODAL : {
+    case TOGGLE_MODAL: {
       return {
         ...state,
-        modal : ! state.modal
-      }
+        modal: !state.modal,
+      };
     }
   }
   return state;

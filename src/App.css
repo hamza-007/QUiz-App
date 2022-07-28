@@ -100,6 +100,7 @@ a {
 .content-section {
   flex: 0.8;
   display: block;
+  padding-left: 20px;
 }
 
 .question-section {

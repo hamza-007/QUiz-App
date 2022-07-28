@@ -1,6 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types"
 
 const Answers = ({ answers, handler, data }) => {
+  console.log("answers component re-rendered");
   return (
     <div className='answers-container'>
       {answers.map((answer, key) => (
@@ -18,5 +20,11 @@ const Answers = ({ answers, handler, data }) => {
     </div>
   );
 };
+
+Answers.propTypes = {
+  data : PropTypes.string,
+  handler : PropTypes.func,
+  answers : PropTypes.array
+}
 
 export default React.memo(Answers);

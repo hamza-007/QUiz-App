@@ -12,8 +12,9 @@ import Question from "../../components/Question";
 import Alert from "../../components/Alert";
 
 const Quiz = () => {
+  console.log("quiz page re-rendered");
   const [current, setcurrent] = useState(0);
-  const [data, setdata] = useState("");
+
   const { questions, error, isloading } = useSelector((s) => s.quiz);
   const dispatch = useDispatch();
 
@@ -33,7 +34,6 @@ const Quiz = () => {
         dispatch(toggle_modal());
       }
     }
-    setdata("");
   };
 
   return (
@@ -49,8 +49,6 @@ const Quiz = () => {
         questions[current] && (
           <Question
             img={`/assets/${questions[0].category}.jpeg`}
-            data={data}
-            setdata={setdata}
             question={questions[current]}
             handler={handleNext}
             id={current}

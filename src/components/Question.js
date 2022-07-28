@@ -1,12 +1,17 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import Countdown from "react-countdown";
 import { useSelector } from "react-redux";
 import Answers from "./Answers";
+import PropTypes from "prop-types";
 
-const Question = (props) => {
+
+
+const Question = ({ img,question, handler, id }) => {
+  console.log("question component re-rendred");
+  const [data, setdata] = useState("");
   let { questions } = useSelector((s) => s.quiz);
   const handleClick = useCallback((e) => {
-    props.setdata(e.target.value);
+    setdata(e.target.value);
   }, []);
 
   return (
@@ -25,27 +30,24 @@ const Question = (props) => {
           </div>
         </div>
         <div className='question-section-image'>
-          <img src={props.img} width={"250px"} height={"150px"} />
+          <img src={img} width={"250px"} height={"150px"} />
           <div className='question-details'>
             <h1>
-              Question {props.id + 1}/{questions.length}
+              Question {id + 1}/{questions.length}
             </h1>
-            <h1>{questions[props.id].question}</h1>
+            <h1>{questions[id].question}</h1>
           </div>
         </div>
         <div>
           <h1>Choose Answer</h1>
           <div className='answers-container'>
             <Answers
-              data={props.data}
-              answers={props.question.incorrectAnswers}
+              data={data}
+              answers={question.incorrectAnswers}
               handler={handleClick}
-            />
+              />
             <div className='next-btn-container'>
-              <button
-                onClick={() => props.handler(props.data)}
-                className='next-btn'
-              >
+              <button onClick={() => handler(data)} className='next-btn'>
                 Next
               </button>
             </div>
@@ -54,6 +56,13 @@ const Question = (props) => {
       </div>
     </div>
   );
+};
+
+Question.propTypes = {
+  img:      PropTypes.string,
+  question: PropTypes.object,
+  handler:  PropTypes.func,
+  id:       PropTypes.number,
 };
 
 export default React.memo(Question);

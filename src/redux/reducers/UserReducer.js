@@ -1,4 +1,4 @@
-import { LOGIN_USER, LOGOUT_USER, GET_USER } from "../constantes/Actions-Type";
+import { LOGIN_USER, LOGOUT_USER } from "../constantes/Actions-Type";
 
 const User = {
   name: null,

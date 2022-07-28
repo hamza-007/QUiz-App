@@ -1,6 +1,4 @@
 import {
-  ADD_CATEGORY,
-  DEL_CATEGORY,
   SET_NBR,
   SET_DIFFICULTY,
   SET_QUERY,
@@ -9,40 +7,23 @@ import {
   FETCH_SUCCES,
   SET_SCORE,
   ADD_ANSWERS,
+  TOGGLE_MODAL,
 } from "../constantes/Actions-Type";
 
 const Quiz = {
-  querystring: "categories=",
-  categories: [],
+  querystring: "",
   difficulty: "easy",
-  questionsnumber: 1,
+  questionsnumber: 5,
   questions: [],
   score: 0,
   isloading: false,
   error: null,
   answers: [],
-};
-
-const query_generator = (tab) => {
-  let str = "";
-  tab.map((item, key) => {
-    key === 0 ? (str = str + item) : (str = str + "," + item);
-  });
-  return str;
+  modal: false,
 };
 
 const QuizReducer = (state = Quiz, action) => {
   switch (action.type) {
-case ADD_CATEGORY:
-      return {
-        ...state,
-        categories: [...state.categories, action.payload],
-      };
-    case DEL_CATEGORY:
-      return {
-        ...state,
-        categories: state.categories.filter((item) => item != action.payload),
-      };
     case SET_NBR:
       return {
         ...state,
@@ -56,7 +37,7 @@ case ADD_CATEGORY:
     case SET_QUERY:
       return {
         ...state,
-        querystring: state.querystring + query_generator(state.categories),
+        querystring: state.querystring + "categories=" + action.payload,
       };
 
     case FETCH_SUCCES:
@@ -86,6 +67,12 @@ case ADD_CATEGORY:
       return {
         ...state,
         answers: [...state.answers, action.payload],
+      };
+    }
+    case TOGGLE_MODAL: {
+      return {
+        ...state,
+        modal: !state.modal,
       };
     }
   }

@@ -1,33 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { add_answer, set_score } from "../../redux/actions/QuizActions";
+import {
+  add_answer,
+  fetch_data,
+  set_score,
+  toggle_modal,
+} from "../../redux/actions/QuizActions";
 import Spinner from "../../components/Spinner";
-import { useNavigate } from "react-router-dom";
 import Question from "../../components/Question";
+import Alert from "../../components/Alert";
 
 const Quiz = () => {
   const [current, setcurrent] = useState(0);
+  const [data, setdata] = useState("");
   const { questions, error, isloading } = useSelector((s) => s.quiz);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  const handleClick = (answer) => {
+  useEffect(() => {
+    dispatch(fetch_data());
+  }, []);
+
+  const handleNext = (answer) => {
+    dispatch(add_answer(answer));
     let nextQuestion = current + 1;
+    if (answer === questions[current].correctAnswer) {
+      dispatch(set_score(10));
+    }
     if (nextQuestion <= questions.length) {
-      dispatch(add_answer(answer));
-      if (answer === questions[current].correctAnswer) {
-        dispatch(set_score(10));
-      }
       setcurrent((prev) => ++prev);
       if (nextQuestion === questions.length) {
-        navigate("/result");
+        dispatch(toggle_modal());
       }
     }
+    setdata("");
   };
 
   return (
     <div className='questions'>
+      <Alert />
       {isloading ? (
         <div>
           <Spinner color='secondary' />
@@ -36,15 +47,17 @@ const Quiz = () => {
         <h1>{error}</h1>
       ) : (
         questions[current] && (
-          <div>
-            <h4>
-              Question {current + 1}/{questions.length}
-            </h4>
-            <Question question={questions[current]} handler={handleClick} />
-          </div>
+          <Question
+            img={`/assets/${questions[0].category}.jpeg`}
+            data={data}
+            setdata={setdata}
+            question={questions[current]}
+            handler={handleNext}
+            id={current}
+          />
         )
       )}
     </div>
   );
 };
-export default Quiz;
+export default React.memo(Quiz);

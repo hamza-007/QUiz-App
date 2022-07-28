@@ -3,7 +3,8 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { Layout } from "./components";
-import { Login, SignUpPage } from "./pages";
+import { Login } from "./pages";
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -19,7 +20,6 @@ const App = () => {
           />
 
           <Route path='/login' element={<Login />} />
-          <Route path='/sign-up' element={<SignUpPage />} />
         </Routes>
       </div>
     </BrowserRouter>

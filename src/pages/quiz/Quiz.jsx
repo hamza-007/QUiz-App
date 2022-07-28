@@ -9,7 +9,6 @@ import {
 } from "../../redux/actions/QuizActions";
 import Spinner from "../../components/Spinner";
 import Question from "../../components/Question";
-import Countdown from "react-countdown";
 import Alert from "../../components/Alert";
 
 const Quiz = () => {
@@ -17,6 +16,7 @@ const Quiz = () => {
   const [data, setdata] = useState("");
   const { questions, error, isloading } = useSelector((s) => s.quiz);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetch_data());
   }, []);
@@ -47,44 +47,17 @@ const Quiz = () => {
         <h1>{error}</h1>
       ) : (
         questions[current] && (
-          <div className='question-section'>
-            <div className='question-section-header'>
-              <div>
-                <h1>{questions[0].category} Quiz</h1>
-                <h6>Answer The Questions Below</h6>
-              </div>
-              <div className='timer'>
-                <h1>
-                  <Countdown date={Date.now() + 60000 * 30} />
-                  Mins
-                </h1>
-              </div>
-            </div>
-            <div className='question-section-image'>
-              <img
-                src={`/assets/${questions[0].category}.jpeg`}
-                width={"250px"}
-                height={"150px"}
-              />
-              <div className='question-details'>
-                <h1>
-                  Question {current + 1}/{questions.length}
-                </h1>
-                <h1>{questions[current].question}</h1>
-              </div>
-            </div>
-            <div>
-              <Question
-                data={data}
-                setdata={setdata}
-                question={questions[current]}
-                handler={handleNext}
-              />
-            </div>
-          </div>
+          <Question
+            img={`/assets/${questions[0].category}.jpeg`}
+            data={data}
+            setdata={setdata}
+            question={questions[current]}
+            handler={handleNext}
+            id={current}
+          />
         )
       )}
     </div>
   );
 };
-export default Quiz;
+export default React.memo(Quiz);

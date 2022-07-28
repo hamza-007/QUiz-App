@@ -11,7 +11,7 @@ const Answers = ({ answers, handler, data }) => {
             checked={data === answer}
             onChange={handler}
             value={answer}
-          />
+          />I
           <h2> {answer} </h2>
         </div>
       ))}
@@ -19,4 +19,4 @@ const Answers = ({ answers, handler, data }) => {
   );
 };
 
-export default Answers;
+export default React.memo(Answers);

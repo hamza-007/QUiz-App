@@ -4,6 +4,8 @@ import data from "../../data";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { set_query } from "../../redux/actions/QuizActions";
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -30,6 +32,21 @@ const Home = () => {
               <h6>{item.name}</h6>
             </div>
           ))}
+        {/* <ImageList cols={5} rowHeight={164}>
+            {data &&
+              data.map((item, key) => (
+                <div className='category'>
+                  <ImageListItem key={key}>
+                    <img
+                      src={`/assets/${item.name}.jpeg`}
+                      width={"200px"}
+                      onClick={() => handleClick(item)}
+                    />
+                    <h6>{item.name}</h6>
+                  </ImageListItem>
+                </div>
+              ))}
+          </ImageList> */}
       </div>
       <button className='more-categories'>More</button>
     </div>

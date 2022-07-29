@@ -1,23 +1,23 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toggle_modal } from "../redux/actions/QuizActions";
 import "./Alert.css";
 
-export default function Alert() {
+const Alert = () => {
   let { score, questions, modal } = useSelector((s) => s.quiz);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const toggleModal = () => {
+  const toggleModal = useCallback(() => {
     dispatch(toggle_modal());
     navigate("/");
-  };
+  }, [modal]);
 
-  const handleReview = () => {
+  const handleReview = useCallback(() => {
     dispatch(toggle_modal());
     navigate("/review");
-  };
+  }, [modal]);
 
   if (modal) {
     document.body.classList.add("active-modal");
@@ -46,4 +46,6 @@ export default function Alert() {
       )}
     </>
   );
-}
+};
+
+export default React.memo(Alert);

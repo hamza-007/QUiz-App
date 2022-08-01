@@ -6,7 +6,9 @@ import Alert from "../../components/Alert";
 import Countdown from "react-countdown";
 
 const Quiz = () => {
-  const { questions, error, isloading } = useSelector((s) => s.quiz);
+  let error = useSelector((s) => s.quiz.error);
+  let isloading = useSelector((s) => s.quiz.isloading);
+  let questions = useSelector((s) => s.quiz.questions);
 
   const renderContent = () => {
     if (isloading || !questions)
@@ -15,7 +17,6 @@ const Quiz = () => {
           <Spinner color='secondary' />
         </div>
       );
-
     if (error) return <h1>{error}</h1>;
 
     return (
@@ -28,7 +29,7 @@ const Quiz = () => {
         </div>
         <Alert />
         <Question
-          img={`/assets/${questions[0]?.category}.jpeg`}
+          img={`/assets/${questions[0].category}.jpeg`}
           questions={questions}
         />
       </>

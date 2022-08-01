@@ -8,10 +8,10 @@ import {
   toggle_modal,
 } from "../redux/actions/QuizActions";
 
-const Question = ({ img, questions }) => {
+const Question = ({ questions, img }) => {
   const [current, setcurrent] = useState(0);
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
   const handleNext = (answer) => {
     dispatch(add_answer(answer));
     let nextQuestion = current + 1;
@@ -25,8 +25,6 @@ const Question = ({ img, questions }) => {
       }
     }
   };
-
-  if (!questions) return null;
 
   return (
     <div className='question-component'>

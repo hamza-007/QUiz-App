@@ -4,12 +4,14 @@ import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { userContext } from "../context/userContext";
+import { useNavigate } from "react-router-dom";
 
 const SideBar = () => {
   const dispatch = useContext(userContext).userdispatcher;
-
+  const navigate = useNavigate();
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
+    navigate("/login");
   };
   return (
     <div className='sidebar'>

@@ -1,12 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "./login.css";
-import { userContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
   const [email, setemail] = useState("");
-  const user = useContext(userContext);
   const [password, setpassword] = useState("");
   const handleEmail = (e) => {
     setemail(e.target.value);

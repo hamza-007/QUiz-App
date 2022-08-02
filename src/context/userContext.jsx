@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import React, { createContext, useReducer } from "react";
 
 export const initialState = {
   islogged: false,
@@ -6,7 +6,6 @@ export const initialState = {
   password: "",
   error: null,
 };
-
 export const userReducer = (state, action) => {
   switch (action.type) {
     case "LOGIN":
@@ -53,3 +52,12 @@ const login = (email, password) => {
 export const checkUser = () => {
   return window.localStorage.getItem("user");
 };
+const UserProvider = ({ children }) => {
+  const [user, userdispatcher] = useReducer(userReducer, initialState);
+  return (
+    <userContext.Provider value={{ user, userdispatcher }}>
+      {children}
+    </userContext.Provider>
+  );
+};
+export default UserProvider;

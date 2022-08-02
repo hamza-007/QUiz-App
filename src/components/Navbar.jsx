@@ -1,9 +1,9 @@
 import React from "react";
-import { useAuth } from "../hooks/useAuth";
 import SearchIcon from "@mui/icons-material/Search";
+import { checkUser } from "../context/userContext";
 
 export default function Navbar() {
-  let user = useAuth();
+  let user = checkUser();
   return (
     <div className='navbar'>
       <a href='/'>

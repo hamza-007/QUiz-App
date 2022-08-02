@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useContext, useState } from "react";
 import "./login.css";
-import { login } from "../../redux/actions/UserActions";
+import { userContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [email, setemail] = useState("");
+  const user = useContext(userContext);
   const [password, setpassword] = useState("");
   const handleEmail = (e) => {
     setemail(e.target.value);
@@ -16,7 +15,14 @@ const Login = () => {
     setpassword(e.target.value);
   };
   const handleSubmit = () => {
-    dispatch(login(email));
+    user.userdispatcher({
+      type: "LOGIN",
+      payload: {
+        email: email,
+        password: password,
+      },
+    });
+
     navigate("/");
   };
   return (
@@ -36,6 +42,7 @@ const Login = () => {
         <div className='form'>
           <h1>login to your account</h1>
           <h4>With your registered email address</h4>
+
           <div className='email'>
             <h6>Email Address*</h6>
             <input
@@ -54,6 +61,13 @@ const Login = () => {
               onChange={handlePassword}
             />
           </div>
+          <h4
+            style={{
+              color: "red",
+            }}
+          >
+            {user.user.error}
+          </h4>
 
           <button className='login__button' onClick={handleSubmit}>
             Login

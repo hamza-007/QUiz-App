@@ -1,18 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { useDispatch } from "react-redux";
-import { logout } from "../redux/actions/UserActions";
-import { useNavigate } from "react-router-dom";
+import { userContext } from "../context/userContext";
 
 const SideBar = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useContext(userContext).userdispatcher;
+
   const handleLogout = () => {
-    navigate("/login");
-    dispatch(logout());
+    dispatch({ type: "LOGOUT" });
   };
   return (
     <div className='sidebar'>

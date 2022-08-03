@@ -7,8 +7,8 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
-  const user = useUser();
-  console.log(user.user);
+  const { userdispatcher, user } = useUser();
+
   const handleEmail = (e) => {
     setemail(e.target.value);
   };
@@ -16,7 +16,7 @@ const Login = () => {
     setpassword(e.target.value);
   };
   const handleSubmit = () => {
-    user.userdispatcher({
+    userdispatcher({
       type: "LOGIN",
       payload: {
         email: email,
@@ -61,14 +61,14 @@ const Login = () => {
               placeholder='Password'
               onChange={handlePassword}
             />
+            <h4
+              style={{
+                color: "red",
+              }}
+            >
+              {user.error}
+            </h4>
           </div>
-          <h4
-            style={{
-              color: "red",
-            }}
-          >
-            {user.user.error}
-          </h4>
 
           <button className='login__button' onClick={handleSubmit}>
             Login

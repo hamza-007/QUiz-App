@@ -33,8 +33,10 @@ const Alert = () => {
           <div className='modal-content'>
             <h1>Congratulations You Have Passed </h1>
             <p>
-              You Scored {Math.trunc(((100 / questions.length) * score) / 10)}%
+              You Have Passed Quiz with{" "}
+              {Math.trunc(((100 / questions.length) * score) / 10)}%
             </p>
+            <p>Your Score : {score}</p>
             <button className='review-btn' onClick={handleReview}>
               Review Quiz
             </button>

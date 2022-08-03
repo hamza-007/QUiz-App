@@ -3,8 +3,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import useUser from "../hooks/useUser";
 
 export default function Navbar() {
-  let { user } = useUser();
-
+  const { checkUser, user } = useUser();
+  let username = null;
+  if (checkUser()) {
+    username = user.email;
+  }
   return (
     <div className='navbar'>
       <a href='/'>
@@ -20,7 +23,7 @@ export default function Navbar() {
       </div>
 
       <button className='navbar__button'>start quiz</button>
-      <div>{user ? <h1>{user.email}</h1> : ""}</div>
+      <div>{username ? <h1>{username}</h1> : ""}</div>
     </div>
   );
 }

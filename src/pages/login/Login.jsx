@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import "./login.css";
 import { useNavigate } from "react-router-dom";
+import useUser from "../../hooks/useUser";
 
 const Login = () => {
   const navigate = useNavigate();
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
+  const user = useUser();
+  console.log(user.user);
   const handleEmail = (e) => {
     setemail(e.target.value);
   };

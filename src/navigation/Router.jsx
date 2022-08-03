@@ -7,18 +7,20 @@ import { Login } from "../pages";
 const Router = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route
-          path='*'
-          element={
-            <ProtectedRoute>
-              <Layout />
-            </ProtectedRoute>
-          }
-        />
+      <div className='App'>
+        <Routes>
+          <Route
+            path='*'
+            element={
+              <ProtectedRoute>
+                <Layout />
+              </ProtectedRoute>
+            }
+          />
 
-        <Route path='/login' element={<Login />} />
-      </Routes>
+          <Route path='/login' element={<Login />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 };

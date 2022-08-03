@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
+import React from "react";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { userContext } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
+import useUser from "../hooks/useUser";
 
 const SideBar = () => {
-  const dispatch = useContext(userContext).userdispatcher;
+  const { userdispatcher } = useUser();
   const navigate = useNavigate();
   const handleLogout = () => {
-    dispatch({ type: "LOGOUT" });
+    userdispatcher({ type: "LOGOUT" });
     navigate("/login");
   };
   return (

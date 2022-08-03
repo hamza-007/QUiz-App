@@ -6,9 +6,7 @@ import UserProvider from "./context/userContext";
 const App = () => {
   return (
     <UserProvider>
-      <div className='App'>
-        <Router />
-      </div>
+      <Router />
     </UserProvider>
   );
 };

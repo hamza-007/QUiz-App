@@ -49,13 +49,13 @@ const login = (email, password) => {
   return true;
 };
 
-export const checkUser = () => {
+const checkUser = () => {
   return window.localStorage.getItem("user");
 };
-const UserProvider = ({ children }) => {
+export const UserProvider = ({ children }) => {
   const [user, userdispatcher] = useReducer(userReducer, initialState);
   return (
-    <userContext.Provider value={{ user, userdispatcher }}>
+    <userContext.Provider value={{ user, userdispatcher, checkUser }}>
       {children}
     </userContext.Provider>
   );

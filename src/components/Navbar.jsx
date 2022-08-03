@@ -1,9 +1,10 @@
 import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import { checkUser } from "../context/userContext";
+import useUser from "../hooks/useUser";
 
 export default function Navbar() {
-  let user = checkUser();
+  let { user } = useUser();
+
   return (
     <div className='navbar'>
       <a href='/'>
@@ -19,7 +20,7 @@ export default function Navbar() {
       </div>
 
       <button className='navbar__button'>start quiz</button>
-      <div>{user ? <h1>{user}</h1> : ""}</div>
+      <div>{user ? <h1>{user.email}</h1> : ""}</div>
     </div>
   );
 }

@@ -8,7 +8,6 @@ const Login = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const user = useUser();
-  console.log(user.user);
   const handleEmail = (e) => {
     setemail(e.target.value);
   };

@@ -175,3 +175,11 @@ a {
   justify-content: space-between;
   width: 700px;
 }
+@media screen and (max-width: 1200px) {
+ .sidebar {
+  display: none;
+ }
+ .content-section{
+  margin: 0 auto;
+ } 
+}

@@ -36,7 +36,6 @@ export const userReducer = (state, action) => {
   }
   return state;
 };
-
 export const userContext = createContext(initialState);
 
 const login = (email, password) => {

@@ -7,8 +7,12 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
+<<<<<<< HEAD
   const { userdispatcher, user } = useUser();
 
+=======
+  const user = useUser();
+>>>>>>> develop
   const handleEmail = (e) => {
     setemail(e.target.value);
   };
